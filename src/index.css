@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Palanquin:wght@100;200;300;400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+      font-family: 'Montserrat', system-ui, Avenir, Helvetica, Arial, sans-serif;
+      line-height: 1.5;
+      font-weight: 400;
+}
+
+
+* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+}
+
+body{
+      user-select: none;
+}
+
+a {
+      text-decoration: none;
+      color: #000;
+}
+
+
+@layer components {
+      .admin-container {
+            @apply grid grid-cols-[1fr_4fr] gap-8;
+      }
+
+      .transaction-box{
+            @apply w-full p-4 overflow-x-auto h-[90%] overflow-y-hidden
+      }
+
+      .dashboard-product-box{
+            @apply bg-white p-8 overflow-auto h-full w-full
+      }
+
+}
+
+@layer utilities {
+      .transform-style-preserve-3d{
+            transform-style: preserve-3d;
+      }
+      .backface-hidden{
+            backface-visibility: hidden;
+      }
+
+      .backface-hidden:first-of-type{
+            background-image: url("../src/assets/images/heads.png");
+      }
+      .backface-hidden:last-of-type{
+            background-image: url("../src/assets/images/tails.png");
+            transform: rotateY(-180deg);
+      }
+
+      .cover{
+            background: url("./assets/cover.jpg") no-repeat center / cover;
+      }
+
+      .homecard::-webkit-scrollbar,
+      .cartmain::-webkit-scrollbar ,
+      .no-scrollbar::-webkit-scrollbar{
+            display: none;
+      }
+
+      .center {
+            @apply absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]
+      }
+
+      .widgetCircle {
+            @apply relative h-20 w-20 flex-none rounded-full grid place-items-center before:content-[""] before:absolute before:h-16 before:w-16 before:bg-white before:rounded-full
+      }
+
+      .table {
+            @apply w-full border-collapse;
+      }
+
+      .table th,
+      .table td {
+            @apply text-left align-middle p-2 ;
+      }
+
+      .table th {
+            @apply font-[bold]  text-[#0000009e] text-[1.1rem] font-normal px-4 py-8 ;
+      }
+      .table tbody tr {
+            @apply shadow-[0px_1px_1px_rgba(0,0,0,0.093)];
+       }
+
+      .table tbody td {
+            @apply p-4 first:border-l-[none] last:border-r-[none];
+      }
+      .table tbody td img {
+            @apply w-16 h-16 object-contain rounded-[10px];
+      }
+      .table tbody td a {
+            @apply no-underline bg-[rgba(44,104,255,0.455)] text-[rgb(44,104,255)] px-2 py-1 rounded-[10px];
+          }
+      .table tbody td button {
+            @apply w-8 h-8 text-[1.1rem] bg-transparent cursor-pointer text-[#ff2c2c] border-[none] hover:opacity-60 outline-none;
+      }
+
+      .input{
+            @apply p-4 border border-[#00000051] bg-inherit w-full focus:outline-none rounded-md text-base
+      }
+
+}
+
+
+      
