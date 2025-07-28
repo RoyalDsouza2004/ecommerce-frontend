@@ -1,7 +1,7 @@
 
 # MERN E-COMMERCE SERVER
 
-Hi! My name is **Royal Greshan Dsouza*,
+Hi! My name is *Royal Greshan Dsouza*
 
 
 # Prerequisite
