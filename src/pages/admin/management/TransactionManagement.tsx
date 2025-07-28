@@ -32,8 +32,6 @@ const defaultData: Order = {
 }
 
 
-const orderItems: OrderItemType[] = [];
-
 
 const TransactionManagement = () => {
 

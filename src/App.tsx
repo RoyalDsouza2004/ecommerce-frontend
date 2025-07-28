@@ -8,7 +8,7 @@ import AdminLayout from "./pages/admin/Layout/Admin";
 import Header from "./components/Header";
 import Orders from "./pages/Orders";
 import OrderDetails from "./pages/OrderDetails";
-import { onAuthStateChanged, signOut } from "firebase/auth";
+import { onAuthStateChanged} from "firebase/auth";
 import { auth } from "./firebase";
 import { userExist, userNotExist } from "./redux/reducer/userReducer";
 import { useDispatch, useSelector } from "react-redux";

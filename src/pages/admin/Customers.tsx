@@ -3,7 +3,7 @@ import { ReactElement, useCallback, useEffect, useState } from 'react';
 import { Column } from 'react-table';
 import TableHOC from '../../components/admin/TableHOC';
 import { FaTrash } from 'react-icons/fa';
-import { RootState, server } from '../../redux/store';
+import { RootState} from '../../redux/store';
 import { useSelector } from 'react-redux';
 import { useAllUsersQuery, useDeleteUserMutation } from '../../redux/api/userAPI';
 import { CustomError } from '../../types/api-types';

@@ -49,7 +49,7 @@ const Cart = () => {
         dispatch(discountApplied(res.data.discount))
         setIsValidCoupenCode(true)
         dispatch(calculatePrice())
-      }).catch((e) => {
+      }).catch(() => {
         dispatch(discountApplied(0))
         setIsValidCoupenCode(false)
         dispatch(calculatePrice())
