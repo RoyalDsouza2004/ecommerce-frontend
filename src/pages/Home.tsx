@@ -11,7 +11,6 @@ import { LuShieldCheck } from "react-icons/lu";
 import { TbTruckDelivery } from "react-icons/tb";
 import { Slider } from "6pp";
 import { motion } from "framer-motion";
-import videoCover from "../assets/videos/cover.mp4";
 
 import { FaAnglesDown } from "react-icons/fa6";
 
@@ -211,7 +210,7 @@ const Home = () => {
     {/* Cover Video */}
     <article className="relative flex flex-col w-full h-screen overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-full bg-black/50 z-10" />
-      <video autoPlay loop muted src={videoCover} className="w-full h-full object-cover" />
+      <video autoPlay loop muted src={"https://res.cloudinary.com/daiowy5pe/video/upload/v1755187213/cover_ks8rpj.mp4"} className="w-full h-full object-cover" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-center z-20">
         <motion.h2 initial={{ x: -100, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 0.5 }} className="text-3xl">
           Fashion
