@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom';
 
 const AdminLayout = () => {
       return <>
-            <div className='admin-container h-[100vh] bg-gray-100 max-xl:overflow-auto max-lg:grid-cols-[1fr]'>
+            <div className='admin-container h-full bg-gray-100 max-xl:overflow-auto max-lg:grid-cols-[1fr]'>
                   <AdminSidebar />
                   <Outlet />
             </div>

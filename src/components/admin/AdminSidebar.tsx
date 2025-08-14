@@ -4,6 +4,7 @@ import { AiFillFileText } from 'react-icons/ai';
 import { FaChartBar, FaChartLine, FaChartPie, FaGamepad, FaStopwatch } from 'react-icons/fa';
 import { HiMenuAlt1 } from 'react-icons/hi';
 import { IoIosPeople } from 'react-icons/io';
+import { MdDiscount } from 'react-icons/md';
 import { RiCoupon3Fill, RiDashboardFill, RiShoppingBag2Fill } from 'react-icons/ri';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -37,7 +38,7 @@ const AdminSidebar = () => {
     <>
       {phoneActive && (
         <button
-          className='grid place-items-center h-12 w-12 border-none outline-none cursor-pointer text-blue-600 bg-white fixed top-2 left-4 rounded-lg z-10'
+          className='grid place-items-center h-12 w-12 border-none outline-none cursor-pointer text-blue-600 bg-white fixed top-2 left-4 rounded-lg z-10 '
           onClick={() => setShowModal(true)}
         >
           <HiMenuAlt1 size={30} />
@@ -52,7 +53,7 @@ const AdminSidebar = () => {
       )}
 
       <aside
-        className={`w-[100%] h-[100vh] bg-white p-4 z-10 overflow-y-auto no-scrollbar ${phoneActive && 'w-[70vw] fixed top-0 transition-all lg:w-[40vw] md:w-[40vw] md:z-10'} ${showModal ? 'left-0' : '-left-[36rem]' 
+        className={`w-[100%] h-full bg-white p-4 z-10 overflow-y-auto no-scrollbar ${phoneActive && 'w-[70vw] fixed  top-0 transition-all lg:w-[40vw] md:w-[40vw] md:z-10'} ${showModal ? 'left-0' : '-left-[36rem]' 
           }`}
       >
         <DivOne location={location} closeSidebar={closeSidebar} />
@@ -79,6 +80,7 @@ const DivOne = ({ location, closeSidebar }: { location: any; closeSidebar: () =>
       <Li url='/admin/product' text='Product' Icon={RiShoppingBag2Fill} location={location} closeSidebar={closeSidebar} />
       <Li url='/admin/customer' text='Customer' Icon={IoIosPeople} location={location} closeSidebar={closeSidebar} />
       <Li url='/admin/transactions' text='Transactions' Icon={AiFillFileText} location={location} closeSidebar={closeSidebar} />
+      <Li url='/admin/discount' text='Discount' Icon={MdDiscount} location={location} closeSidebar={closeSidebar} />
     </ul>
   </div>
 );
@@ -99,7 +101,7 @@ const DIvThree = ({ location, closeSidebar }: { location: any; closeSidebar: () 
     <h5 className='tracking-[2px] font-bold opacity-40 uppercase mt-4 mb-4'>apps</h5>
     <ul className='flex flex-col list-none '>
       <Li url='/admin/app/stopwatch' text='Stopwatch' Icon={FaStopwatch} location={location} closeSidebar={closeSidebar} />
-      <Li url='/admin/app/coupen' text='Coupen' Icon={RiCoupon3Fill} location={location} closeSidebar={closeSidebar} />
+      <Li url='/admin/app/coupon' text='Coupon' Icon={RiCoupon3Fill} location={location} closeSidebar={closeSidebar} />
       <Li url='/admin/app/toss' text='Toss' Icon={FaGamepad} location={location} closeSidebar={closeSidebar} />
     </ul>
   </div>

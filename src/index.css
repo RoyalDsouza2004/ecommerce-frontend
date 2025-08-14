@@ -59,10 +59,6 @@ a {
             transform: rotateY(-180deg);
       }
 
-      .cover{
-            background: url("./assets/cover.jpg") no-repeat center / cover;
-      }
-
       .homecard::-webkit-scrollbar,
       .cartmain::-webkit-scrollbar ,
       .no-scrollbar::-webkit-scrollbar{
@@ -97,7 +93,7 @@ a {
             @apply p-4 first:border-l-[none] last:border-r-[none];
       }
       .table tbody td img {
-            @apply w-16 h-16 object-contain rounded-[10px];
+            @apply w-16 h-16 object-contain rounded-[10px] ;
       }
       .table tbody td a {
             @apply no-underline bg-[rgba(44,104,255,0.455)] text-[rgb(44,104,255)] px-2 py-1 rounded-[10px];

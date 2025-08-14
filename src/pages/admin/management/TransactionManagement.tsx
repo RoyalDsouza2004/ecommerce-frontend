@@ -6,8 +6,7 @@ import { OrderItemType } from "../../../types";
 import { UserReducerInitialState } from "../../../types/reducer-types";
 import { Order } from "../../../types/types";
 import { SkeletonLoader } from "../../../components/Loader";
-import { server } from "../../../redux/store";
-import { responseToast } from "../../../utils/features";
+import { responseToast, transformImage } from "../../../utils/features";
 
 const defaultData: Order = {
   shippingInfo: {
@@ -89,7 +88,7 @@ const TransactionManagement = () => {
               <ProductCard
                 key={i._id}
                 name={i.name}
-                photo={`${server}/${i.photo}`}
+                photo={i.photo}
                 _id={i._id}
                 quantity={i.quantity}
                 price={i.price}
@@ -139,7 +138,7 @@ const TransactionManagement = () => {
 
 const ProductCard = ({ name, photo, price, quantity, _id }: OrderItemType) => (
   <div className="flex items-center gap-4">
-    <img src={photo} alt={name} className="h-16 w-16 object-cover rounded-md" />
+    <img src={transformImage(photo)} alt={name} className="h-16 w-16 object-cover rounded-md" />
     <Link to={`/product/${_id}`}>{name}</Link>
     <span className="ml-auto">
       ${price} X {quantity} = ${price * quantity}

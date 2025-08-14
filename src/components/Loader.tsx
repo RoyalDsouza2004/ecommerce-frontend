@@ -4,13 +4,13 @@ const Loader = () => {
   )
 }
 
-interface SkeletonProps { width?: string, length?: number }
+interface SkeletonProps { width?: string, length?: number , height?: string  , containerHeight?: string }
 
 
-export const SkeletonLoader = ({ width = "w-full", length = 3 }: SkeletonProps) => {
+export const SkeletonLoader = ({ width = "w-full", length = 3 , height="h-[30px]" , containerHeight="" }: SkeletonProps) => {
 
-  const skeletons = Array.from({ length }, (_, idx) => <div key={idx} className="h-2 bg-gray-200 rounded-full dark:bg-gray-500 mb-2.5"></div>)
-  return <div role="status" className={`animate-pulse ${width}`}>
+  const skeletons = Array.from({ length }, (_, idx) => <div key={idx} className={` ${height} bg-gray-200 rounded-sm dark:bg-gray-500 mb-2.5`}></div>)
+  return <div role="status" className={`animate-pulse ${width} ${containerHeight}`}>
     {skeletons}
   </div>
 }

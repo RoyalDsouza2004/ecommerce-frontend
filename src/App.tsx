@@ -16,22 +16,26 @@ import { getUser } from "./redux/api/userAPI";
 import { UserReducerInitialState } from "./types/reducer-types";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Checkout from "./pages/Checkout";
+import Footer from "./components/Footer";
 
 const Dashboard = lazy(() => import("./pages/admin/Dashboard"));
 const Products = lazy(() => import("./pages/admin/Products"));
 const Transactions = lazy(() => import('./pages/admin/Transactions'));
 const Customers = lazy(() => import('./pages/admin/Customers'));
+const Discount = lazy(() => import('./pages/admin/Discount'));
 
 const BarCharts = lazy(() => import("./pages/admin/charts/BarCharts"));
 const PieCharts = lazy(() => import("./pages/admin/charts/PieCharts"));
 const LineCharts = lazy(() => import("./pages/admin/charts/LineCharts"));
 
 const NewProduct = lazy(() => import("./pages/admin/management/NewProduct"));
+const NewDiscount = lazy(() => import("./pages/admin/management/NewDiscount"));
 const ProductManagement = lazy(() => import("./pages/admin/management/ProductManagement"));
 const TransactionManagement = lazy(() => import("./pages/admin/management/TransactionManagement"));
+const DiscountManagement = lazy(() => import("./pages/admin/management/DiscountManagement"));
 
 const Toss = lazy(() => import("./pages/admin/apps/Toss"));
-const Coupen = lazy(() => import("./pages/admin/apps/Coupen"));
+const Coupon = lazy(() => import("./pages/admin/apps/Coupon"));
 const Stopwatch = lazy(() => import("./pages/admin/apps/Stopwatch"));
 
 const Home = lazy(() => import("./pages/Home"));
@@ -40,6 +44,7 @@ const Cart = lazy(() => import("./pages/Cart"));
 const Shipping = lazy(() => import("./pages/Shipping"));
 const Login = lazy(() => import("./pages/Login"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const ProductDetails = lazy(() => import("./pages/ProductDetails"));
 
 const App = () => {
 
@@ -57,6 +62,7 @@ const App = () => {
   }, [])
 
 
+
   return (
     <Router>
       <Suspense fallback={<Loader />}>
@@ -70,14 +76,15 @@ const App = () => {
 const MainContent = () => {
   const { user, loading } = useSelector((state: { userReducer: UserReducerInitialState }) => state.userReducer);
   const location = useLocation();
-  const showHeader = location.pathname !== "/login";
+  const showHeaderAndFooter = location.pathname !== "/login";
 
   return loading ? <Loader /> : (
     <>
-      {showHeader && <Header user={user} />}
+      {showHeaderAndFooter && <Header user={user} />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/search" element={<Search />} />
+        <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="/cart" element={<Cart />} />
 
         <Route path="/login" element={
@@ -102,21 +109,25 @@ const MainContent = () => {
             <Route path="product" element={<Products />} />
             <Route path="transactions" element={<Transactions />} />
             <Route path="customer" element={<Customers />} />
+            <Route path="discount" element={<Discount />} />
 
             <Route path="chart/bar" element={<BarCharts />} />
             <Route path="chart/pie" element={<PieCharts />} />
             <Route path="chart/line" element={<LineCharts />} />
 
             <Route path="app/stopwatch" element={<Stopwatch />} />
-            <Route path="app/coupen" element={<Coupen />} />
+            <Route path="app/coupon" element={<Coupon />} />
             <Route path="app/toss" element={<Toss />} />
             <Route path="product/new" element={<NewProduct />} />
+            <Route path="discount/new" element={<NewDiscount />} />
             <Route path="product/:id" element={<ProductManagement />} />
             <Route path="transaction/:id" element={<TransactionManagement />} />
+            <Route path="discount/:id" element={<DiscountManagement />} />
           </Route>
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
+      {showHeaderAndFooter && <Footer />}
     </>
   );
 };

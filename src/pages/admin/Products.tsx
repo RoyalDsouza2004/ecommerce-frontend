@@ -7,9 +7,9 @@ import { Column } from 'react-table';
 import TableHOC from '../../components/admin/TableHOC';
 import { SkeletonLoader } from '../../components/Loader';
 import { useAllProductsQuery } from '../../redux/api/productAPI';
-import { server } from '../../redux/store';
 import { CustomError } from '../../types/api-types';
 import { UserReducerInitialState } from '../../types/reducer-types';
+import { transformImage } from '../../utils/features';
 
 interface DataType {
   photo: ReactElement;
@@ -50,17 +50,18 @@ const Products: React.FC = () => {
 
   const { isLoading, isError, error, data } = useAllProductsQuery(user?._id!)
 
+  const [rows, setRows] = useState<DataType[]>([])
+  
   if (isError) {
     const err = error as CustomError
     toast.error(err.data.message)
   }
 
-  const [rows, setRows] = useState<DataType[]>([])
 
   useEffect(() => {
     if (data) setRows(
       data.products.map(i => ({
-        photo: <img src={`${server}/${i.photo}`} />,
+        photo: <img src={transformImage(i.photos[0].url)} />,
         name: i.name,
         price: i.price,
         stock: i.stock,

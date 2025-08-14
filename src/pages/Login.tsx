@@ -4,7 +4,7 @@ import toast from "react-hot-toast"
 import { BiArrowBack } from "react-icons/bi"
 import { FcGoogle } from "react-icons/fc"
 import { useNavigate } from "react-router-dom"
-import { auth } from "../firebase"
+import { auth  } from "../firebase"
 import { useLoginMutation } from "../redux/api/userAPI"
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query/react"
 import { MessageResponse } from "../types/api-types"
@@ -47,6 +47,7 @@ const Login = () => {
 
             } catch (error) {
                   toast.error("Sign in Fail")
+
             }
       }
 

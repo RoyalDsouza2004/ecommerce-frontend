@@ -68,7 +68,7 @@ const CheckoutForm = () => {
       return <div className="max-w-[400px] w-full m-auto">
             <form onSubmit={submitHandler} className="flex flex-col justify-start items-stretch gap-8">
                   <PaymentElement />
-                  <button className="cursor-pointer p-4 bg-[rgb(0,104,136)] text-white rounded-md w-full font-medium text-base" type="submit" disabled={isProcessing}>
+                  <button className="cursor-pointer p-4 bg-[rgb(0,104,136)] text-white rounded-md w-full font-medium text-base disabled:opacity-50" type="submit" disabled={isProcessing}>
                         {isProcessing ? "Processing..." : "Pay"}
                   </button>
             </form>

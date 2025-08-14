@@ -26,7 +26,7 @@ const Header = ({ user }: PropsType) => {
             }
       }
 
-      return <nav className="flex justify-end items-center gap-10 p-4 h-[8vh] sticky top-0 z-10 bg-white" >
+      return <nav className="flex justify-end items-center gap-10 p-4 h-[8vh] sticky top-0 z-30 bg-white" >
             <Link className="text-lightblack tracking-wide text-lg hover:text-darkblue" to={"/"} onClick={() => setIsOpen(false)}>
                   <IoHome />
             </Link>
@@ -37,8 +37,8 @@ const Header = ({ user }: PropsType) => {
                   user?._id ? (
                         <>
                               <button className="text-lg cursor-pointer bg-transparent hover:text-darkblue" onClick={() => setIsOpen((prev) => !prev)}><img src={user.photo} referrerPolicy="no-referrer" className="rounded-full w-8 h-8 border border-green"/> </button>
-                              <dialog className="border border-gray-300 rounded-md p-3 w-24 absolute left-[calc(100%-100px)] top-16" open={isOpen} >
-                                    <div className="flex flex-col justify-start items-center gap-1">
+                              <dialog className="border border-gray-300 rounded-md p-3 w-24 absolute left-[calc(100%-100px)] top-16 z-30" open={isOpen} >
+                                    <div className="flex flex-col justify-start items-center gap-1 z-30">
                                           {
                                                 user.role === 'admin' && (
                                                       <Link to={'/admin/dashboard'} onClick={() => setIsOpen(false)}>Admin</Link>

@@ -66,7 +66,7 @@ const Orders = () => {
             discount:i.discount,
             quantity:i.orderItems.length,
             status:<span className={i.status === "Processing" ? "text-red-600" : i.status === "Shipped" ? "text-green" :"text-purple"}>{i.status}</span>,
-            action:<Link to={`/admin/transaction/${i._id}`}>Manage</Link>
+            action:<Link to={`/orders/${i._id}`}>View</Link>
           }))
         )
     
