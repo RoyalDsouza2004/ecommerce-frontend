@@ -156,7 +156,7 @@ const Home = () => {
     );
 
   return (<>
-    <div className="px-[5%] py-8 flex flex-col max-w-[1920px] w-full mx-auto">
+    <div className="px-[5%] py-8 flex flex-col max-w-[1920px] w-full mx-auto max-xl:px-2 max-xl:py-8 max-xl:pt-0">
       <div className="flex p-4 gap-8 max-xl:flex-col">
         <aside className="flex flex-col gap-4 max-w-[60rem] flex-none">
           <h1 className="relative font-bold text-lg flex justify-between items-center before:content-[''] before:w-[3px] before:h-8 before:bg-black before:absolute before:-translate-x-4 max-xl:hidden">
