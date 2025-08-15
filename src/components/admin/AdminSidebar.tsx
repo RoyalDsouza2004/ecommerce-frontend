@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { IconType } from 'react-icons';
 import { AiFillFileText } from 'react-icons/ai';
 import { FaChartBar, FaChartLine, FaChartPie, FaGamepad, FaStopwatch } from 'react-icons/fa';
-import { HiMenuAlt1 } from 'react-icons/hi';
+import { HiMenuAlt1, HiMenuAlt2 } from 'react-icons/hi';
 import { IoIosPeople } from 'react-icons/io';
 import { MdDiscount } from 'react-icons/md';
 import { RiCoupon3Fill, RiDashboardFill, RiShoppingBag2Fill } from 'react-icons/ri';
@@ -38,10 +38,10 @@ const AdminSidebar = () => {
     <>
       {phoneActive && (
         <button
-          className='grid place-items-center h-12 w-12 border-none outline-none cursor-pointer text-blue-600 bg-white fixed top-2 left-4 rounded-lg z-10 '
+          className='grid place-items-center h-12 w-12 border-none outline-none cursor-pointer text-blue-600 bg-white fixed top-2 left-4 rounded-lg z-50'
           onClick={() => setShowModal(true)}
         >
-          <HiMenuAlt1 size={30} />
+          <HiMenuAlt2 size={30}  />
         </button>
       )}
 
