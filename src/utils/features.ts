@@ -52,10 +52,7 @@ export const getLastMonths = () =>{
       }
 }
 
-export const transformImage = (url:string, width = 200) =>{
-
-      const newurl = url.replace(/upload/, `upload/dpr_auto/w_${width}`)
-
-      return newurl
-
-}
+export const transformImage = (url?: string, width = 200) => {
+  const safeUrl = url || "https://via.placeholder.com/200";
+  return safeUrl.replace(/upload/, `upload/dpr_auto/w_${width}`);
+};
