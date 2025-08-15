@@ -48,6 +48,7 @@ const NewProduct = () => {
       formData.set("price", price.toString())
       formData.set("stock", stock.toString())
       formData.set("category", category)
+      formData.set("description", description)
 
       photos.file.forEach((file) => formData.append("photos", file))
 
