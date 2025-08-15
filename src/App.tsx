@@ -92,7 +92,7 @@ const MainContent = () => {
             <Login />
           </ProtectedRoute>} />
 
-        <Route element={<ProtectedRoute isAuthenticated={user ? true : false} />}>
+        <Route element={<ProtectedRoute isAuthenticated={user ? true : false} redirect="/login" />}>
           <Route path="/shipping" element={<Shipping />} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/orders/:id" element={<OrderDetails />} />
