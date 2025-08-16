@@ -243,36 +243,44 @@ const PrevButton: CarouselButtonType = ({ onClick }) => <button onClick={onClick
 export default ProductDetails
 
 
-const ReviewCard = ({ 
+const ReviewCard = ({
       review,
       showDialog,
       userId = "",
-      handleDeleteReview 
-   }: {
+      handleDeleteReview
+}: {
       review: Review,
       showDialog: () => void,
       userId?: string,
       handleDeleteReview: (reviewId: string) => void
-   }) => (
+}) => (
       <div
             key={review._id}
             className="
       bg-slate-200 rounded-md p-6 
-      flex flex-col gap-3 
+      flex flex-col 
       w-full max-w-xl mx-auto
       shadow-sm relative
+      min-h-48
     "
       >
-            <div className="mb-2 ">
+            <div className="mb-2 relative">
                   <RatingsComponent value={review.rating} />
-                  {
-                        review.user._id === userId && (
-                              <button onClick={showDialog} className="absolute top-2 right-4 w-12 h-12 flex items-center justify-center text-2xl text-slate-600 hover:text-slate-800"><CiEdit /></button>
-                        )
-                  }
+                  {review.user._id === userId && (
+                        <button
+                              onClick={showDialog}
+                              className="absolute top-0 right-0 w-10 h-10 flex items-center justify-center text-xl text-slate-600 hover:text-slate-800"
+                        >
+                              <CiEdit />
+                        </button>
+                  )}
             </div>
-            <p className="text-sm text-gray-800 break-words min-h-24">{review.comment}</p>
-            <div className="flex items-center gap-4 mt-2 ">
+
+            <p className="text-sm text-gray-800 break-words">
+                  {review.comment}
+            </p>
+
+            <div className="flex items-center gap-4 mt-auto pt-4">
                   <img
                         src={review.user.photo}
                         alt={review.user.name}
@@ -281,10 +289,14 @@ const ReviewCard = ({
                   />
                   <p className="font-semibold">{review.user.name}</p>
             </div>
-                  {
-                        review.user._id === userId && (
-                              <button onClick={() => handleDeleteReview(review._id)} className="absolute -top-3 -right-3 bg-black hover:bg-slate-800 text-white rounded-full w-8 h-8 flex items-center justify-center"><FaTrash /></button>
-                        )
-                  }
+
+            {review.user._id === userId && (
+                  <button
+                        onClick={() => handleDeleteReview(review._id)}
+                        className="absolute -top-3 -right-3 bg-black hover:bg-slate-800 text-white rounded-full w-8 h-8 flex items-center justify-center"
+                  >
+                        <FaTrash />
+                  </button>
+            )}
       </div>
 );

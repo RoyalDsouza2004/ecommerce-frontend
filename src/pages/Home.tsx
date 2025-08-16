@@ -185,7 +185,7 @@ const Home = () => {
         </Link>
       </h1>
 
-      <main className="w-full flex flex-wrap gap-4 max-lg:pl-6">
+      <main className="w-full flex gap-4 overflow-x-auto whitespace-nowrap no-scrollbar py-4">
         {isLoading
           ? Array.from({ length: 6 }, (_, i) => (
             <div key={i} className="h-[25rem]">
@@ -194,15 +194,16 @@ const Home = () => {
             </div>
           ))
           : data?.products.map((i) => (
-            <ProductCard
-              key={i._id}
-              productId={i._id}
-              name={i.name}
-              price={i.price}
-              stock={i.stock}
-              handler={addToCartHandler}
-              photos={i.photos}
-            />
+            <div key={i._id} className="flex-shrink-0">
+              <ProductCard
+                productId={i._id}
+                name={i.name}
+                price={i.price}
+                stock={i.stock}
+                handler={addToCartHandler}
+                photos={i.photos}
+              />
+            </div>
           ))}
       </main>
     </div>
