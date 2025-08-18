@@ -39,21 +39,21 @@ const Cart = () => {
 
   useEffect(() => {
 
-    const {token , cancel} = axios.CancelToken.source()
+    const { token, cancel } = axios.CancelToken.source()
 
     const timeOutID = setTimeout(() => {
-      axios.get(`${server}/api/v1/payment/discount?coupon=${coupenCode}` , {
-        cancelToken:token
+      axios.get(`${server}/api/v1/payment/discount?coupon=${coupenCode}`, {
+        cancelToken: token
       })
-      .then((res) => {
-        dispatch(discountApplied(res.data.discount))
-        setIsValidCoupenCode(true)
-        dispatch(calculatePrice())
-      }).catch(() => {
-        dispatch(discountApplied(0))
-        setIsValidCoupenCode(false)
-        dispatch(calculatePrice())
-      })
+        .then((res) => {
+          dispatch(discountApplied(res.data.discount))
+          setIsValidCoupenCode(true)
+          dispatch(calculatePrice())
+        }).catch(() => {
+          dispatch(discountApplied(0))
+          setIsValidCoupenCode(false)
+          dispatch(calculatePrice())
+        })
     }, 1000);
 
     return () => {
@@ -83,7 +83,9 @@ const Cart = () => {
 
         }
       </main>
-      <aside className="w-[30%] p-16 flex flex-col justify-center items-stretch gap-4 bg-gray-50 xl:fixed xl:top-56 xl:right-0 max-lg:w-full max-lg:items-center max-lg:pl-12">
+      <aside className="w-[30%] p-16 flex flex-col justify-center items-stretch gap-4 bg-gray-50 
+   xl:sticky xl:top-24 max-lg:w-full max-lg:items-center max-lg:pl-12">
+
         <p className="text-base">Subtotal : ₹{subtotal}</p>
         <p className="text-base">Shipping Charges : ₹{shippingCharges}</p>
         <p className="text-base">Tax: ₹{tax}</p>

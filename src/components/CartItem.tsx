@@ -3,31 +3,63 @@ import { Link } from "react-router-dom";
 import { CartItem } from "../types/types";
 import { transformImage } from "../utils/features";
 
-
 type CartItemProps = {
-      cartItem : CartItem;
-      incrementHandler:(cartItem:CartItem) => void,
-      decrementHandler:(cartItem:CartItem) => void,
-      removeHandler:(id:string) => void,
-    };
+  cartItem: CartItem;
+  incrementHandler: (cartItem: CartItem) => void;
+  decrementHandler: (cartItem: CartItem) => void;
+  removeHandler: (id: string) => void;
+};
 
-const CartItems = ({cartItem , incrementHandler , decrementHandler , removeHandler} :CartItemProps) => {
-      const {photo , productId , name , price , quantity } = cartItem;
+const CartItems = ({
+  cartItem,
+  incrementHandler,
+  decrementHandler,
+  removeHandler,
+}: CartItemProps) => {
+  const { photo, productId, name, price, quantity } = cartItem;
+
   return (
-    <div className="p-8 flex justify-start items-center gap-4 bg-gray-100 max-sm:flex-col max-sm:justify-center ">
-      <img src={transformImage(photo)} alt={name} className="h-40 w-40 object-contain" />
-      <article className="flex flex-col justify-center items-start gap-1 max-sm:items-center">
-            <Link to={`/product/${productId}`} className="text-lg text-lightblack hover:text-darkblue">{name}</Link>
-            <span className="font-bold">₹{price}</span>
-      </article>
-      <div className="xl:ml-auto lg:ml-auto md:ml-auto flex justify-center items-center gap-2">
-            <button className="h-8 w-8 rounded-md border-2 flex justify-center items-center cursor-pointer text-lg hover:bg-lightblack hover:text-white" onClick={() =>decrementHandler(cartItem)}>-</button>
-            <p className="text-sm">{quantity}</p>
-            <button className="h-8 w-8 rounded-md border-2 flex justify-center items-center cursor-pointer text-lg hover:bg-lightblack hover:text-white"onClick={() =>incrementHandler(cartItem)}>+</button>
-      </div>
-      <button className="bg-transperent flex justify-center items-center cursor-pointer text-base hover:text-red-600" onClick={() =>removeHandler(productId)}><FaTrash /></button>
-    </div>
-  )
-}
+    <div className="p-8 flex justify-start items-center gap-4 bg-gray-100 max-sm:flex-col max-sm:justify-center">
+      <img
+        src={transformImage(photo)}
+        alt={name}
+        className="h-40 w-40 object-contain"
+      />
 
-export default CartItems
+      <article className="flex flex-col justify-center items-start gap-1 max-sm:items-center">
+        <Link
+          to={`/product/${productId}`}
+          className="text-lg text-lightblack hover:text-darkblue max-lg:text-center"
+        >
+          {name}
+        </Link>
+        <span className="font-bold max-sm:text-center">₹{price}</span>
+      </article>
+
+      <div className="xl:ml-auto lg:ml-auto md:ml-auto flex justify-center items-center gap-2">
+        <button
+          className="h-8 w-8 rounded-md border-2 flex justify-center items-center cursor-pointer text-lg hover:bg-lightblack hover:text-white"
+          onClick={() => decrementHandler(cartItem)}
+        >
+          -
+        </button>
+        <p className="text-sm">{quantity}</p>
+        <button
+          className="h-8 w-8 rounded-md border-2 flex justify-center items-center cursor-pointer text-lg hover:bg-lightblack hover:text-white"
+          onClick={() => incrementHandler(cartItem)}
+        >
+          +
+        </button>
+      </div>
+
+      <button
+        className="bg-transparent flex justify-center items-center cursor-pointer text-base hover:text-red-600"
+        onClick={() => removeHandler(productId)}
+      >
+        <FaTrash />
+      </button>
+    </div>
+  );
+};
+
+export default CartItems;

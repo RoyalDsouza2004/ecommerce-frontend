@@ -176,7 +176,7 @@ const Search: React.FC = () => {
         {productLoading ? (
           <SkeletonLoader width="w-full" length={10} />
         ) : (
-          <div className="flex justify-start items-start flex-wrap h-[100%-10rem] overflow-y-auto">
+          <div className="flex justify-start items-start gap-4 flex-wrap h-[100%-10rem] overflow-y-auto max-lg:justify-center max-lg:items-center">
             {searchedData?.products.map(i => (
               <ProductCard
                 key={i._id}
