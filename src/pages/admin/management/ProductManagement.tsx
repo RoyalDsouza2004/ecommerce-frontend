@@ -109,6 +109,7 @@ const ProductManagement = () => {
                 showThumbnails
                 showNav={false}
                 showDots
+                objectFit="contain"
                 images={photos.map(i => i.url) || []}
               />
             </div>
