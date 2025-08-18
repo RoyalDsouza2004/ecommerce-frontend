@@ -9,11 +9,13 @@ import { RootState, server } from "../redux/store";
 
 const Shipping = () => {
 
-
-      const { cartItems , total } = useSelector((state: RootState) => state.cartReducer)
+      const { cartItems, coupon } = useSelector(
+            (state: RootState) => state.cartReducer
+      );
+      const { user } = useSelector((state: RootState) => state.userReducer);
 
       const navigate = useNavigate();
-      const dispatch = useDispatch()
+      const dispatch = useDispatch();
 
       const [shippingInfo, setShippingInfo] = useState({
             address: "",
@@ -21,40 +23,46 @@ const Shipping = () => {
             state: "",
             country: "",
             pinCode: "",
-      })
+      });
 
-      const changeHandler = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-            setShippingInfo(prev => ({ ...prev, [e.target.name]: e.target.value }))
+      const changeHandler = (
+            e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+      ) => {
+            setShippingInfo((prev) => ({ ...prev, [e.target.name]: e.target.value }));
       };
 
-         const submitHandler = async(e:FormEvent<HTMLFormElement>) => {
+      const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
             e.preventDefault();
 
-            dispatch(saveShippingInfo(shippingInfo))
+            dispatch(saveShippingInfo(shippingInfo));
 
             try {
-                  const {data} = await axios.post(`${server}/api/v1/payment/create`,{
-                        amount:total
-                  } , {
-                        headers:{
-                              "Content-Type":"application/json"
+                  const { data } = await axios.post(
+                        `${server}/api/v1/payment/create?id=${user?._id}`,
+                        {
+                              items: cartItems,
+                              shippingInfo,
+                              coupon,
+                        },
+                        {
+                              headers: {
+                                    "Content-Type": "application/json",
+                              },
                         }
-                  })
+                  );
 
-                  navigate("/pay" ,{
-                        state: data.clientSecret
-                  })
-
-
+                  navigate("/pay", {
+                        state: data.clientSecret,
+                  });
             } catch (error) {
-                  console.log(error)
-                  toast.error("Something went wrong")
+                  console.log(error);
+                  toast.error("Something went wrong");
             }
-         }
+      };
 
       useEffect(() => {
-            if (cartItems.length <= 0) return navigate("/cart")
-      }, [cartItems])
+            if (cartItems.length <= 0) return navigate("/cart");
+      }, [cartItems]);
 
 
       return (

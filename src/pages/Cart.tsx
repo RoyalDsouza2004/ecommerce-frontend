@@ -3,7 +3,7 @@ import { VscError } from "react-icons/vsc";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import CartItemCard from "../components/CartItem";
-import { addToCart, calculatePrice, discountApplied, removeCartItem } from "../redux/reducer/cartReducer";
+import { addToCart, calculatePrice, discountApplied, removeCartItem , saveCoupon } from "../redux/reducer/cartReducer";
 import { CartReducerInitialState } from "../types/reducer-types";
 import { CartItem } from "../types/types";
 import axios from "axios";
@@ -47,6 +47,7 @@ const Cart = () => {
       })
         .then((res) => {
           dispatch(discountApplied(res.data.discount))
+          dispatch(saveCoupon(coupenCode))
           setIsValidCoupenCode(true)
           dispatch(calculatePrice())
         }).catch(() => {

@@ -26,45 +26,49 @@ const CheckoutForm = () => {
       const { user } = useSelector((state: RootState) => state.userReducer)
 
       const {
-            shippingInfo, cartItems, subtotal, tax, discount, shippingCharges, total, 
+            shippingInfo, cartItems, subtotal, tax, discount, shippingCharges, total,
       } = useSelector((state: RootState) => state.cartReducer)
 
       const [isProcessing, setIsProcessing] = useState<boolean>(false)
 
-      const [newOrder] = useNewOrderMutation()
+      const [newOrder] = useNewOrderMutation();
 
-      const submitHandler = async (e: FormEvent) => {
+      const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
             e.preventDefault();
-            if (!stripe || !elements) return;
 
+            if (!stripe || !elements) return;
             setIsProcessing(true);
+
             const orderData: NewOrderRequest = {
-                  shippingCharges, shippingInfo, orderItems:cartItems,
-                  subtotal, tax,
-                  discount, total, user:user?._id!
+                  shippingInfo,
+                  orderItems: cartItems,
+                  subtotal,
+                  tax,
+                  discount,
+                  shippingCharges,
+                  total,
+                  user: user?._id!,
             };
 
             const { paymentIntent, error } = await stripe.confirmPayment({
                   elements,
-                  confirmParams: {
-                        return_url: window.location.origin
-                  },
-                  redirect: "if_required"
-            })
+                  confirmParams: { return_url: window.location.origin },
+                  redirect: "if_required",
+            });
 
             if (error) {
-                  setIsProcessing(false)
+                  setIsProcessing(false);
                   return toast.error(error.message || "Something Went Wrong");
             }
 
             if (paymentIntent.status === "succeeded") {
-                  const res = await newOrder(orderData)
-                  dispatch(resetCart())
-                  responseToast(res, navigate , "/orders")
+                  const res = await newOrder(orderData);
+                  dispatch(resetCart());
+                  responseToast(res, navigate, "/orders");
             }
-
-            setIsProcessing(false)
-      }
+            setIsProcessing(false);
+      };
+      
       return <div className="max-w-[400px] w-full m-auto">
             <form onSubmit={submitHandler} className="flex flex-col justify-start items-stretch gap-8">
                   <PaymentElement />
