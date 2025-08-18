@@ -18,12 +18,12 @@ const ProductManagement = () => {
 
   const { data, isLoading, isError } = useProductDetailsQuery(params.id!)
 
-  const { name, price, photos, stock, category , description } = data?.product || {
+  const { name, price, photos, stock, category, description } = data?.product || {
     name: "",
     photos: [],
     category: "",
     stock: 0,
-    price: 0 , description: ""
+    price: 0, description: ""
   }
 
   const [loading, setLoading] = useState<boolean>(false);
@@ -101,10 +101,15 @@ const ProductManagement = () => {
     <main className="flex justify-center gap-4 relative p-8 max-xl:p-8 max-sm:flex-col max-sm:items-center h-aut ">
       {
         isLoading ? <SkeletonLoader length={10} /> : <>
-          <section className="overflow-y-auto w-full h-[85vh] max-w-lg shadow-md bg-white p-20 flex flex-col gap-4 relative rounded-md max-sm:max-w-[400px] ">
+          <section className="overflow-y-auto w-full h-[85vh] max-w-lg shadow-md bg-white p-20 flex flex-col gap-4 relative rounded-md max-sm:max-w-[400px] max-sm:h-[1000px]">
             <strong className="font-light">ID - {data?.product._id}</strong>
 
-            <div className="relative w-full h-full rounded-md overflow-hidden">
+            <div
+              className="
+                relative w-full 
+                h-72
+                  rounded-md overflow-hidden"
+            >
               <Slider
                 showThumbnails
                 showNav={false}
@@ -113,7 +118,6 @@ const ProductManagement = () => {
                 images={photos.map(i => i.url) || []}
               />
             </div>
-
             <p className="text-center tracking-wider uppercase">{name}</p>
             {
               stock > 0 ? (
